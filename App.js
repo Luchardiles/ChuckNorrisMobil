@@ -52,13 +52,7 @@ const ChuckNorrisJoke = () => {
       
       if (data.result.length > 0) {
         const randomIndex = Math.floor(Math.random() * data.result.length);
-        
-      if (data.result.length > 0) {
-        const randomIndex = Math.floor(Math.random() * data.result.length);
-        setJoke(data.result[randomIndex].result[randomIndex].value);
-      } else {
-        setJoke(joke);
-      }
+        setJoke(data.result[randomIndex].value);
       } else {
         setJoke(joke);
       }
@@ -80,7 +74,6 @@ const ChuckNorrisJoke = () => {
         value={searchQuery}
         onChangeText={(text) => setSearchQuery(text)}
       />
-      <Button title="Buscar chiste" onPress={fetchChuckNorrisJokewithText} />
       <Button title="Buscar chiste" onPress={fetchChuckNorrisJokewithText} />
       <Text>{joke}</Text>
       <Button title="Dame un chiste aleatorio" onPress={fetchChuckNorrisJoke} />
