@@ -50,14 +50,20 @@ const ChuckNorrisJoke = () => {
 
   const fetchChuckNorrisJokewithText = async () => {
     try {
-      let apiUrl = 'https://api.chucknorris.io/jokes/random';
-      if (selectedCategory) {
-        apiUrl += `?category=${selectedCategory}`;
+      let apiUrl = 'https://api.chucknorris.io/jokes/search';
+      if (searchQuery) {
+        apiUrl += `?query=${searchQuery}`;
       }
       
       const response = await fetch(apiUrl);
       const data = await response.json();
-      setJoke(data.value);
+      
+      if (data.result.length > 0) {
+        const randomIndex = Math.floor(Math.random() * data.result.length);
+        setJoke(data.result[randomIndex].value);
+      } else {
+        setJoke(joke);
+      }
 
     } catch (error) {
       console.error('Error fetching Chuck Norris joke:', error);
@@ -76,7 +82,7 @@ const ChuckNorrisJoke = () => {
         value={searchQuery}
         onChangeText={(text) => setSearchQuery(text)}
       />
-      <Button title="Get me a new one" onPress={fetchChuckNorrisJoke} />
+      <Button title="Buscar chiste" onPress={fetchChuckNorrisJokewithText} />
       <Text>{joke}</Text>
       <Button title="Dame un chiste aleatorio" onPress={fetchChuckNorrisJoke} />
       <Picker
