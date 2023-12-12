@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from 'react';
-import { View, Text, Button, Picker  } from 'react-native';
+import { View, Text, Button} from 'react-native';
 import { TextInput } from 'react-native-paper';
 import {Stack,router} from 'expo-router'
 import {COLORS,icons,images,SIZES} from '../ChuckNorrisMobil/constants';
 import { SafeAreaView } from 'react-native-safe-area-context';
+import {Picker} from 'react-native-picker';
+
 
 const ChuckNorrisJoke = () => {
   const [joke, setJoke] = useState('');
@@ -77,11 +79,11 @@ const ChuckNorrisJoke = () => {
         value={searchQuery}
         onChangeText={(text) => setSearchQuery(text)}
       />
-      <SafeAreaView style={{flex:1,backgroundColor:COLORS.goldenrod, margin:'auto',position:relative}}>
+      <SafeAreaView style={{flex:1,backgroundColor:COLORS.goldenrod, margin:'auto'}}>
       <Button title="Buscar chiste" onPress={fetchChuckNorrisJokewithText} />
       <Text>{joke}</Text>
       </SafeAreaView>
-      <SafeAreaView style={{flex:1,backgroundColor:COLORS.goldenrod, margin:'auto',position:relative}}>
+      <SafeAreaView style={{flex:1,backgroundColor:COLORS.goldenrod, margin:'auto'}}>
       <Button title="Dame un chiste aleatorio" onPress={fetchChuckNorrisJoke} />
       <Picker
         selectedValue={selectedCategory}
@@ -93,7 +95,7 @@ const ChuckNorrisJoke = () => {
         ))}
       </Picker>
       </SafeAreaView>
-      <SafeAreaView style={{flex:1,backgroundColor:COLORS.goldenrod,margin:'auto',position:relative}}>
+      <SafeAreaView style={{flex:1,backgroundColor:COLORS.goldenrod,margin:'auto'}}>
       <Button title="Dame un chiste de la categoria seleccionada" onPress={fetchChuckNorrisJokewithCategory} />
       </SafeAreaView>
     </SafeAreaView>
